@@ -8,8 +8,10 @@ A fully automated setup for CKA, CKAD, and CKS practice labs is tested on the fo
 - Mac Intel-based systems
 ## Prerequisites
 
-1. Working Vagrant setup
+1. Working Vagrant setup (virtualbox and vagrant installed)
 2. 8 Gig + RAM workstation as the Vms use 3 vCPUS and 4+ GB RAM
+3. Install Virtualbox https://download.virtualbox.org/virtualbox/7.2.4/VirtualBox-7.2.4-170995-Win.exe
+4. Install Vagrant https://releases.hashicorp.com/vagrant/2.4.9/vagrant_2.4.9_windows_amd64.msi
 
 ## For MAC/Linux Users
 
