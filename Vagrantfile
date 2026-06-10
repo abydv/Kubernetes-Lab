@@ -11,6 +11,9 @@ IP_START = Integer(IP_SECTIONS.captures[1])
 NUM_WORKER_NODES = settings["nodes"]["workers"]["count"]
 
 Vagrant.configure("2") do |config|
+  # Increase boot timeout to handle slower systems or heavy provisioning
+  config.vm.boot_timeout = 600
+  
   config.vm.provision "shell", env: { "IP_NW" => IP_NW, "IP_START" => IP_START, "NUM_WORKER_NODES" => NUM_WORKER_NODES }, inline: <<-SHELL
       apt-get update -y
       echo "$IP_NW$((IP_START)) kmaster" >> /etc/hosts
@@ -83,7 +86,7 @@ Vagrant.configure("2") do |config|
     SHELL
       # Reboot the VM once provisioning completes (run in background so provisioner doesn't hang)
       kmaster.vm.provision "shell", inline: <<-SHELL
-        sudo nohup bash -c 'sleep 15; shutdown -r now' >/dev/null 2>&1 &
+        sudo nohup bash -c 'sleep 60; shutdown -r now' >/dev/null 2>&1 &
       SHELL
   end
 
@@ -128,7 +131,7 @@ Vagrant.configure("2") do |config|
       end
         # Reboot the VM once provisioning completes (run in background so provisioner doesn't hang)
         node.vm.provision "shell", inline: <<-SHELL
-          sudo nohup bash -c 'sleep 15; shutdown -r now' >/dev/null 2>&1 &
+          sudo nohup bash -c 'sleep 30; shutdown -r now' >/dev/null 2>&1 &
         SHELL
     end
 
