@@ -12,7 +12,7 @@ NUM_WORKER_NODES = settings["nodes"]["workers"]["count"]
 
 Vagrant.configure("2") do |config|
   # Increase boot timeout to handle slower systems or heavy provisioning
-  config.vm.boot_timeout = 120
+  config.vm.boot_timeout = 180
   
   config.vm.provision "shell", env: { "IP_NW" => IP_NW, "IP_START" => IP_START, "NUM_WORKER_NODES" => NUM_WORKER_NODES }, inline: <<-SHELL
       apt-get update -y
